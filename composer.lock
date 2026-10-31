@@ -1,0 +1,197 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "189e590de935b94dec3e4ceeca47e9bd",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "aiphra/caldav",
+            "version": "0.0.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/caldav",
+                "reference": "139c2633b0d89519ef02a27e62d97500648051c6"
+            },
+            "require": {
+                "aiphra/core": "~0.0.1",
+                "ext-dom": "*",
+                "ext-filter": "*",
+                "ext-libxml": "*",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AiphraCore\\CalDav\\": "src/CalDav/",
+                    "AiphraCore\\Providers\\CalDav\\": "src/Providers/CalDav/",
+                    "AiphraCore\\Providers\\Traits\\": "src/Providers/Traits/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Reusable CalDAV client and calendar provider for Aiphra.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "aiphra/core",
+            "version": "0.0.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/core",
+                "reference": "232a28bcaf8f5aceaf78837be9f4475feb1ca01b"
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "suggest": {
+                "ext-curl": "Required by the bundled CurlClient; optional when using your own HttpClient."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AiphraCore\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Provider-independent calendar objects, filters, operations and HTTP contracts for Aiphra.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "aiphra/google",
+            "version": "0.0.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/google",
+                "reference": "64f11bb9905be0cc094ff4154dd54bedb695dddc"
+            },
+            "require": {
+                "aiphra/caldav": "~0.0.1",
+                "aiphra/core": "~0.0.1",
+                "ext-filter": "*",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AiphraCore\\Providers\\GoogleCalendar\\": "src/GoogleCalendar/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Google Calendar provider with OAuth, CalDAV and REST API methods for Aiphra.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "phpstan/phpstan",
+            "version": "2.3.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/18bc23a0682f08591529377d271b5c4dfe9ed1dd",
+                "reference": "18bc23a0682f08591529377d271b5c4dfe9ed1dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Mirtes"
+                },
+                {
+                    "name": "Markus Staab"
+                },
+                {
+                    "name": "Vincent Langlet"
+                }
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-24T11:36:00+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "aiphra/caldav": 20,
+        "aiphra/core": 20,
+        "aiphra/google": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-zip": "*"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}

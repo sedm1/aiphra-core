@@ -1,0 +1,28 @@
+{
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "ext-dom": "*",
+        "ext-filter": "*",
+        "ext-libxml": "*",
+        "aiphra/core": "~0.0.1"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "name": "aiphra/caldav",
+    "description": "Reusable CalDAV client and calendar provider for Aiphra.",
+    "autoload": {
+        "psr-4": {
+            "AiphraCore\\CalDav\\": "src/CalDav/",
+            "AiphraCore\\Providers\\CalDav\\": "src/Providers/CalDav/",
+            "AiphraCore\\Providers\\Traits\\": "src/Providers/Traits/"
+        }
+    }
+}

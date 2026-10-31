@@ -1,0 +1,58 @@
+{
+    "name": "aiphra/monorepo",
+    "description": "Development workspace for the independently installable Aiphra packages.",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "ext-curl": "*",
+        "ext-dom": "*",
+        "ext-zip": "*"
+    },
+    "require-dev": {
+        "aiphra/core": "~0.0.1@dev",
+        "aiphra/caldav": "~0.0.1@dev",
+        "aiphra/google": "~0.0.1@dev",
+        "phpstan/phpstan": "^2.3"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/*",
+            "options": {
+                "symlink": true,
+                "reference": "config",
+                "versions": {
+                    "aiphra/core": "0.0.x-dev",
+                    "aiphra/caldav": "0.0.x-dev",
+                    "aiphra/google": "0.0.x-dev"
+                }
+            }
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "validate-packages": "php tools/validate-packages.php",
+        "analyse": "phpstan analyse --debug --no-progress",
+        "analyse:strict": "phpstan analyse --level=max --debug --no-progress packages/core/src packages/google/src",
+        "test": "php tests/run.php",
+        "test:core": "php tests/run.php core",
+        "test:caldav": "php tests/run.php caldav",
+        "test:google": "php tests/run.php google",
+        "test:install": "php tools/test-install.php",
+        "check": [
+            "@validate-packages",
+            "@analyse",
+            "@analyse:strict",
+            "@test",
+            "@test:install"
+        ],
+        "release:build": "php tools/build-release.php",
+        "repository:build": "php tools/build-repository.php"
+    }
+}

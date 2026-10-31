@@ -1,0 +1,65 @@
+name: Build Composer repository
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aiphra-composer-repository
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: zip
+          coverage: none
+      - name: Download and verify all released package archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_REPOSITORY: ${{ github.repository }}
+        run: bash tools/download-releases.sh "$SOURCE_REPOSITORY" dist/releases
+      - name: Build static Composer repository
+        env:
+          REPOSITORY_URL: ${{ vars.AIPHRA_REPOSITORY_URL }}
+        run: |
+          test -n "$REPOSITORY_URL" || { echo 'Configure AIPHRA_REPOSITORY_URL with the public catalog URL.' >&2; exit 1; }
+          php tools/build-repository.php dist/releases dist/repository "$REPOSITORY_URL"
+      - name: Upload repository for any static host
+        uses: actions/upload-artifact@v7
+        with:
+          name: composer-repository
+          path: dist/repository
+          include-hidden-files: true
+          if-no-files-found: error
+      - name: Upload GitHub Pages artifact
+        if: vars.AIPHRA_PAGES_ENABLED == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist/repository
+
+  deploy:
+    if: vars.AIPHRA_PAGES_ENABLED == 'true'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Composer repository
+        id: deployment
+        uses: actions/deploy-pages@v5

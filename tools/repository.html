@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Composer repository</title>
+<style>
+  body { max-width: 56rem; margin: 4rem auto; padding: 0 1.5rem; font: 1rem/1.6 system-ui, sans-serif; }
+  pre { overflow: auto; padding: 1rem; background: #f4f4f5; border-radius: .5rem; }
+  code { font-family: ui-monospace, monospace; }
+</style>
+<h1>Composer repository</h1>
+<p>Добавьте каталог в приложение, затем установите нужный пакет:</p>
+<pre><code>composer config repositories.aiphra composer {{url}}
+composer require aiphra/core</code></pre>
+<p>Composer установит только выбранный пакет и его зависимости.</p>
+<h2>Доступные версии</h2>
+<ul>{{packages}}</ul>
+<p><a href="packages.json">Метаданные Composer</a></p>
+</html>

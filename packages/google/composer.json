@@ -1,0 +1,25 @@
+{
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "ext-filter": "*",
+        "aiphra/core": "~0.0.1",
+        "aiphra/caldav": "~0.0.1"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "name": "aiphra/google",
+    "description": "Google Calendar provider with OAuth, CalDAV and REST API methods for Aiphra.",
+    "autoload": {
+        "psr-4": {
+            "AiphraCore\\Providers\\GoogleCalendar\\": "src/GoogleCalendar/"
+        }
+    }
+}

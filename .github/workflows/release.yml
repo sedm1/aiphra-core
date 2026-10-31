@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aiphra-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    uses: ./.github/workflows/ci.yml
+
+  archives:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: zip
+          tools: composer:v2
+          coverage: none
+      - name: Build independent packages
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: php tools/build-release.php "$RELEASE_TAG"
+      - name: Publish GitHub release and package archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" dist/"$RELEASE_TAG"/* --verify-tag --title "$RELEASE_TAG" --generate-notes
+
+  repository:
+    needs: archives
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/repository.yml

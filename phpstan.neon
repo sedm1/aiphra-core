@@ -1,0 +1,10 @@
+parameters:
+    level: 5
+    phpVersion: 80200
+    paths:
+        - packages/core/src
+        - packages/caldav/src
+        - packages/google/src
+        - tests
+        - tools
+        - sandbox

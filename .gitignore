@@ -1,0 +1,28 @@
+vendor/
+/packages/*/composer.lock
+/dist/
+
+# Local development documentation
+/docs/dev/
+
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Test and static-analysis artifacts
+/.cache/
+.phpunit.cache/
+.phpunit.result.cache
+.phpstan.cache
+.phpstan.cache/
+.php-cs-fixer.cache
+/coverage/
+
+# Local tooling and operating-system files
+/composer.phar
+.DS_Store
+
+# Personal PhpStorm workspace state; shared code style stays versioned.
+.idea/workspace.xml

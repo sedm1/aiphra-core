@@ -1,0 +1,25 @@
+{
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.0.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "name": "aiphra/core",
+    "description": "Provider-independent calendar objects, filters, operations and HTTP contracts for Aiphra.",
+    "autoload": {
+        "psr-4": {
+            "AiphraCore\\": "src/"
+        }
+    },
+    "suggest": {
+        "ext-curl": "Required by the bundled CurlClient; optional when using your own HttpClient."
+    }
+}
